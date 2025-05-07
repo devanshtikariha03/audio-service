@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: fastapi-audio-service
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: AZURE_STORAGE_CONNECTION_STRING
+        fromSecret: AZURE_STORAGE_CONNECTION_STRING
+      - key: AZURE_ACCOUNT_KEY
+        fromSecret: AZURE_ACCOUNT_KEY
+      - key: AWS_ACCESS_KEY_ID
+        fromSecret: AWS_ACCESS_KEY_ID
+      - key: AWS_SECRET_ACCESS_KEY
+        fromSecret: AWS_SECRET_ACCESS_KEY
